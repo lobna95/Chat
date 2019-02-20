@@ -17,13 +17,8 @@ class WelcomeVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         GIDSignIn.sharedInstance().uiDelegate = self
         FBOutlet.delegate = self
-        
-//        let googleBtn = GIDSignInButton()
-//        googleBtn.frame = CGRect(x: 16, y: 200, width: view.frame.width - 32, height: 50)
-//        view.addSubview(googleBtn)
     }
   
     @IBAction func FBBtn(_ sender: UIButton) {
@@ -49,14 +44,14 @@ class WelcomeVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate
                     }
                     print(result)
                 })
-                self.performSegue(withIdentifier: "goToChat", sender: self)
+                self.performSegue(withIdentifier: "goToChatList", sender: self)
             }
         }
     }
     
     @IBAction func GoogleBtn(_ sender: UIButton) {
         GIDSignIn.sharedInstance()?.signIn()
-        performSegue(withIdentifier: "goToChat", sender: self)
+        performSegue(withIdentifier: "goToChatList", sender: self)
     }
     
     
@@ -68,7 +63,7 @@ class WelcomeVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate
             let credentials = FacebookAuthProvider.credential(withAccessToken: (accessToken?.tokenString)!)
             Auth.auth().signInAndRetrieveData(with: credentials, completion: { (user, error) in
                 if error != nil{
-                    print(error)
+                    print("\(error)")
                     return
                 }
                 print("Successfull FB on Firebase")
@@ -79,7 +74,7 @@ class WelcomeVC: UIViewController, GIDSignInUIDelegate, FBSDKLoginButtonDelegate
                     return
                 }
             })
-            self.performSegue(withIdentifier: "goToChat", sender: self)
+            self.performSegue(withIdentifier: "goToChatList", sender: self)
         }
     }
     

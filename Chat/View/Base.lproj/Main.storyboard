@@ -123,23 +123,30 @@
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="background1" translatesAutoresizingMaskIntoConstraints="NO" id="3CB-1L-8NT">
                                 <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-Pg-Vgu">
-                                <rect key="frame" x="20" y="229" width="280" height="110"/>
+                            <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="default-user" translatesAutoresizingMaskIntoConstraints="NO" id="bir-Hf-UOV">
+                                <rect key="frame" x="96" y="146" width="115" height="105"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="f89-9A-ZSc" appends="YES" id="2H2-Wn-nii"/>
+                                </connections>
+                            </imageView>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TO1-Pg-Vgu">
+                                <rect key="frame" x="20" y="286" width="272" height="101"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ee4-hy-uL3">
-                                        <rect key="frame" x="0.0" y="0.0" width="280" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="272" height="27"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uxd-4Y-Xu8">
-                                        <rect key="frame" x="0.0" y="40" width="280" height="30"/>
+                                        <rect key="frame" x="0.0" y="37" width="272" height="27"/>
                                         <nil key="textColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M62-jf-Yk4">
-                                        <rect key="frame" x="0.0" y="80" width="280" height="30"/>
+                                        <rect key="frame" x="0.0" y="74" width="272" height="27"/>
                                         <color key="backgroundColor" red="0.1450980392" green="0.63529411759999999" blue="0.30588235289999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Register">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -154,11 +161,16 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="TO1-Pg-Vgu" firstAttribute="leading" secondItem="gD2-2L-9S7" secondAttribute="leading" constant="20" id="6LS-Oi-aVu"/>
+                            <constraint firstItem="bir-Hf-UOV" firstAttribute="width" secondItem="DMu-PD-lp3" secondAttribute="width" multiplier="0.36" id="B2C-rC-ybV"/>
+                            <constraint firstItem="TO1-Pg-Vgu" firstAttribute="width" secondItem="gD2-2L-9S7" secondAttribute="width" multiplier="0.85" id="Bla-gi-vIe"/>
                             <constraint firstItem="3CB-1L-8NT" firstAttribute="top" secondItem="gD2-2L-9S7" secondAttribute="top" id="EXO-jm-wQA"/>
-                            <constraint firstItem="TO1-Pg-Vgu" firstAttribute="centerY" secondItem="DMu-PD-lp3" secondAttribute="centerY" id="IDi-MH-mVE"/>
+                            <constraint firstItem="bir-Hf-UOV" firstAttribute="top" secondItem="gD2-2L-9S7" secondAttribute="top" constant="82" id="Mdu-Is-bfS"/>
                             <constraint firstItem="gD2-2L-9S7" firstAttribute="bottom" secondItem="3CB-1L-8NT" secondAttribute="bottom" id="O2D-mg-fBB"/>
-                            <constraint firstItem="TO1-Pg-Vgu" firstAttribute="centerX" secondItem="DMu-PD-lp3" secondAttribute="centerX" id="aXi-Ii-wDm"/>
+                            <constraint firstItem="bir-Hf-UOV" firstAttribute="leading" secondItem="gD2-2L-9S7" secondAttribute="leading" constant="96" id="Tnh-3M-T9L"/>
+                            <constraint firstItem="bir-Hf-UOV" firstAttribute="height" secondItem="DMu-PD-lp3" secondAttribute="height" multiplier="0.185" id="XcV-5z-bqd"/>
                             <constraint firstItem="3CB-1L-8NT" firstAttribute="leading" secondItem="gD2-2L-9S7" secondAttribute="leading" id="eSb-QO-eTw"/>
+                            <constraint firstItem="TO1-Pg-Vgu" firstAttribute="height" secondItem="gD2-2L-9S7" secondAttribute="height" multiplier="0.2" id="nL3-U6-6ZW"/>
+                            <constraint firstItem="TO1-Pg-Vgu" firstAttribute="top" secondItem="bir-Hf-UOV" secondAttribute="bottom" constant="35" id="nN2-8r-55O"/>
                             <constraint firstItem="gD2-2L-9S7" firstAttribute="trailing" secondItem="3CB-1L-8NT" secondAttribute="trailing" id="u8X-5G-QPo"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gD2-2L-9S7"/>
@@ -166,12 +178,18 @@
                     <connections>
                         <outlet property="emailText" destination="Ee4-hy-uL3" id="RYd-Kk-bSd"/>
                         <outlet property="passwordText" destination="uxd-4Y-Xu8" id="Qy4-Yc-l1y"/>
+                        <outlet property="userImage" destination="bir-Hf-UOV" id="Bw4-Z4-VeO"/>
                         <segue destination="YLX-Dy-Ldc" kind="show" identifier="goToChat" id="Ktm-nQ-WvU"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ALG-bB-s4h" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="f89-9A-ZSc">
+                    <connections>
+                        <action selector="profilePictureTapped:" destination="Xbm-WP-Dqt" id="qgE-dw-3sJ"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2870" y="963"/>
+            <point key="canvasLocation" x="2868.75" y="962.32394366197184"/>
         </scene>
         <!--Chat-->
         <scene sceneID="rnt-i5-MEX">
@@ -330,8 +348,9 @@
     <resources>
         <image name="background" width="1280" height="949"/>
         <image name="background1" width="1800" height="1192"/>
+        <image name="default-user" width="167" height="167"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="lGI-Nd-TEQ"/>
+        <segue reference="Ktm-nQ-WvU"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -14,7 +14,7 @@ import ChameleonFramework
 import SVProgressHUD
 
 class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITextFieldDelegate{
-
+    
     @IBOutlet weak var heightConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageTableView: UITableView!
     @IBOutlet weak var messageTextfield: UITextField!
@@ -33,8 +33,8 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tableVieweTapped))
         messageTableView.addGestureRecognizer(tapGesture)
         
-//        firstViewController.navigationController.viewControllers = [NSArray arrayWithObject: secondViewController];
-
+        //        firstViewController.navigationController.viewControllers = [NSArray arrayWithObject: secondViewController];
+        
         messageTableView.register(UINib(nibName: "MessageCell", bundle: nil), forCellReuseIdentifier: "customMessageCell")
         configureTableView()
         
@@ -47,31 +47,29 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     }
     
     @IBAction func sendBtn(_ sender: UIButton) {
-        messageTextfield.endEditing(true)
-        messageTextfield.isEnabled = false
-        sendBtn.isEnabled = false
         
-        let messageDB = Database.database().reference().child("Messages")
-        
-        let messageDictionary = ["Sender" : Auth.auth().currentUser?.email, "MessageBody" : messageTextfield.text]
-        
-        messageDB.childByAutoId().setValue(messageDictionary){
-            (error, reference) in
+        if(messageTextfield.text != ""){
+            messageTextfield.endEditing(true)
+            messageTextfield.isEnabled = false
+            sendBtn.isEnabled = false
             
-            if error != nil{
-                print(error)
-                return
+            let messageDB = Database.database().reference().child("Messages")
+            
+            let messageDictionary = ["Sender" : Auth.auth().currentUser?.email, "MessageBody" : messageTextfield.text]
+            
+            messageDB.childByAutoId().setValue(messageDictionary){
+                (error, reference) in
+                
+                if error != nil{
+                    print(error)
+                    return
+                }
+                self.messageTextfield.isEnabled = true
+                self.messageTextfield.text = ""
+                self.sendBtn.isEnabled = true
             }
-            self.messageTextfield.isEnabled = true
-            self.messageTextfield.text = ""
-            self.sendBtn.isEnabled = true
         }
     }
-    
-    
-//    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-//        messageTextfield.endEditing(true)
-//    }
     
     //MARK: - TextField Delegate Methods
     func textFieldDidBeginEditing(_ textField: UITextField) {
@@ -80,7 +78,7 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             self.view.layoutIfNeeded()
         }
     }
-
+    
     func textFieldDidEndEditing(_ textField: UITextField) {
         UIView.animate(withDuration: 0.5) {
             self.heightConstraint.constant = 50
@@ -99,13 +97,11 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
         
         cell.messageBody.text = messageArray[indexPath.row].Body
         cell.sendeerUsername.text = messageArray[indexPath.row].Sender
-        cell.avatarImageView.image = UIImage(named: "egg")
-        
+        cell.avatarImageView.image = UIImage(named: "default-user")
+
         if cell.sendeerUsername.text == Auth.auth().currentUser?.email as String!{
-            cell.avatarImageView.backgroundColor = UIColor.flatMint()
             cell.messageBackground.backgroundColor = UIColor.flatSkyBlue()
         }else{
-            cell.avatarImageView.backgroundColor = UIColor.flatWatermelon()
             cell.messageBackground.backgroundColor = UIColor.flatGray()
         }
         
@@ -118,7 +114,6 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
     
     func configureTableView(){
         messageTableView.estimatedRowHeight = 120.0
-//        messageTableView.rowHeight = UITableAuto
     }
     
     //Create the retrieveMessages method
@@ -150,5 +145,5 @@ class ChatVC: UIViewController, UITableViewDelegate, UITableViewDataSource, UITe
             print(error)
         }
     }
-
+    
 }
